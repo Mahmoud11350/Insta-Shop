@@ -20,7 +20,7 @@ module.exports = {
     },
     extend: {
       backgroundImage: {
-        heroSideBg: url("/img/hero-side-bg.png"),
+        heroSideBg: url("./src/assets/img/hero-side-bg.png"),
       },
       colors: {
         border: "hsl(var(--border))",

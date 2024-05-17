@@ -5,6 +5,7 @@ import express from "express";
 import connectDB from "./db/connect.js";
 import cookieParser from "cookie-parser";
 import notFoundMiddleware from "./middleware/notFoundMiddleware.js";
+import cors from "cors";
 
 // Import Routes
 import userRouter from "./routes/userRouter.js";
@@ -15,6 +16,7 @@ const app = express();
 // Pre Middleware
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors());
 
 // routes
 app.use("/api/v1/users", userRouter);
