@@ -42,6 +42,7 @@ const SingleProduct = () => {
             <ul className="flex gap-4 my-4">
               {product.colors.map((color) => (
                 <li
+                  key={color}
                   className={`w-6 h-6 rounded-full `}
                   style={{ backgroundColor: color }}
                 ></li>
@@ -57,7 +58,11 @@ const SingleProduct = () => {
               <SelectContent>
                 {Array.from({ length: 10 }).map((_, index) => {
                   const selectedValue = (index += 1).toString();
-                  return <SelectItem value={selectedValue}>{index}</SelectItem>;
+                  return (
+                    <SelectItem value={selectedValue} key={selectedValue}>
+                      {index}
+                    </SelectItem>
+                  );
                 })}
               </SelectContent>
             </Select>
