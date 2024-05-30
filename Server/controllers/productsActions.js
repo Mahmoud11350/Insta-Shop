@@ -18,7 +18,7 @@ export const getAllProducts = async (req, res) => {
   }
 
   if (shipping) {
-    queryObject.shipping = shipping == "true" ? true : false;
+    queryObject.shipping = shipping ? true : false;
   }
   // if (orderBy) {
   //   queryObject.orderBy = orderBy == "a-z" ? "":"";
