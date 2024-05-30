@@ -21,6 +21,7 @@ const SelectRow = ({
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent>
+        <SelectItem value={"all"}>All</SelectItem>
         {data?.map((item) => {
           return <SelectItem value={item}>{item}</SelectItem>;
         })}

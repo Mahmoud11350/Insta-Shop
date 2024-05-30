@@ -2,18 +2,16 @@ import { StatusCodes } from "http-status-codes";
 import Product from "../models/Product.js";
 import NOTFOUNDERROR from "../errors/notFoundError.js";
 export const getAllProducts = async (req, res) => {
-  const { featured, name, category, company, shipping, orderBy } = req.query;
+  const { title, category, company, shipping, orderBy } = req.query;
   const queryObject = {};
-  if (featured) {
-    queryObject.featured = featured === "true" ? true : false;
+
+  if (title) {
+    queryObject.title = { $regex: title, $options: "i" };
   }
-  if (name) {
-    queryObject.name = { $regx: name, $options: "i" };
-  }
-  if (category) {
+  if (category && category !== "all") {
     queryObject.category = category;
   }
-  if (company) {
+  if (company && company !== "all") {
     queryObject.company = company;
   }
 
