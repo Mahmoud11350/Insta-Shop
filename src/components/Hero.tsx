@@ -12,7 +12,7 @@ const Hero = () => {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore
           </p>
-          <div className="">
+          <div className="space-x-4">
             <button className="py-2 px-9 bg-green-400  rounded-lg text-white">
               Read More{" "}
             </button>
