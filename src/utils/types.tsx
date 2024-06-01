@@ -10,3 +10,15 @@ export type Product = {
   shipping: boolean;
   colors: string[];
 };
+
+type Links = {
+  href: string;
+  label: string;
+};
+
+export const links: Links[] = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/products", label: "Products" },
+  { href: "/cart", label: "Cart" },
+];

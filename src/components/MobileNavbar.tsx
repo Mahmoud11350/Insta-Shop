@@ -1,30 +1,32 @@
-import logoImg from "../assets/img/Logo.png";
+import { Link } from "react-router-dom";
 import barImg from "../assets/img/menu.png";
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-  } from "@/components/ui/dropdown-menu"
-  
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+import { links } from "@/utils/types";
 const MobileNavbar = () => {
   return (
+    <div className="md:hidden">
+      <DropdownMenu>
+        <DropdownMenuTrigger>
+          <img src={barImg} className="w-10" />
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          {links.map((link) => {
+            return (
+              <Link to={link.href}>
+                <DropdownMenuItem>{link.label}</DropdownMenuItem>
+              </Link>
+            );
+          })}
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
+  );
+};
 
-<DropdownMenu>
-  <DropdownMenuTrigger>Open</DropdownMenuTrigger>
-  <DropdownMenuContent>
-    <DropdownMenuLabel>My Account</DropdownMenuLabel>
-    <DropdownMenuSeparator />
-    <DropdownMenuItem>Profile</DropdownMenuItem>
-    <DropdownMenuItem>Billing</DropdownMenuItem>
-    <DropdownMenuItem>Team</DropdownMenuItem>
-    <DropdownMenuItem>Subscription</DropdownMenuItem>
-  </DropdownMenuContent>
-</DropdownMenu>
-
-  )
-}
-
-export default MobileNavbar
+export default MobileNavbar;
