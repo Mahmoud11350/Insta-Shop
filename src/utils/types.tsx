@@ -22,3 +22,15 @@ export const links: Links[] = [
   { href: "/products", label: "Products" },
   { href: "/cart", label: "Cart" },
 ];
+
+export type CartItemType = {
+  productId: string;
+  _id: string;
+  amount: string | number;
+  title: string;
+  company: string;
+  image: string;
+  colors?: string[];
+  price?: string;
+  totalPrice: number;
+};

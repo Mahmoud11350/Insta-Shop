@@ -1,35 +1,17 @@
-import {
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@clerk/clerk-react";
 import logoImg from "../assets/img/Logo.png";
-import AuthNavbar from "./AuthNavbar";
-import MobileNavbar from "./MobileNavbar";
 import WebNavbar from "./WebNavbar";
+import AuthNavbar from "./AuthNavbar";
 
 const Navbar = () => {
   return (
     <>
-      <AuthNavbar />
-      <nav className=" h-16 bg-green-400/10 ">
-        <div className="h-16 flex items-center justify-between wrapper">
+      <nav className=" h-16 bg-green-400/10 flex items-center  ">
+        <div className="flex items-center  justify-between flex-1 wrapper">
           <div className="mr-20">
             <img src={logoImg} className="w-24" />
           </div>
-          <div className="flex items-center">
-            <MobileNavbar />
-            <WebNavbar />
-          </div>
-          <div>
-            <SignedOut>
-              <SignInButton />
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-          </div>
+          <WebNavbar />
+          <AuthNavbar />
         </div>
       </nav>
     </>

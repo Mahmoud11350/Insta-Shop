@@ -2,7 +2,7 @@ import { links } from "@/utils/types";
 import { NavLink } from "react-router-dom";
 const WebNavbar = () => {
   return (
-    <div className="hidden md:block">
+    <div className="hidden md:block ">
       <ul className="flex items-center space-x-5">
         {links.map((link) => {
           return (

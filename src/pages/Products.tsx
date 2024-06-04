@@ -29,6 +29,7 @@ export const loader: LoaderFunction = async ({
   const compines = [
     ...new Set(allProducts.map((product: Product) => product.company)),
   ] as string[];
+
   return { products, catigories, compines };
 };
 

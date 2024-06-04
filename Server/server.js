@@ -10,6 +10,7 @@ import cors from "cors";
 // Import Routes
 import userRouter from "./routes/userRouter.js";
 import productRouter from "./routes/productRouter.js";
+import cartRouter from "./routes/cartRouter.js";
 import errorMiddleware from "./middleware/errorsMiddleware.js";
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(cors());
 // routes
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/products", productRouter);
+app.use("/api/v1/cart", cartRouter);
 
 // Post Middleware
 app.use(notFoundMiddleware);

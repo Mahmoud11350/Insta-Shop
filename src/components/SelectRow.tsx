@@ -12,7 +12,7 @@ const SelectRow = ({
   data,
 }: {
   name: string;
-  placeholder: string;
+  placeholder?: string;
   data?: string[];
 }) => {
   return (

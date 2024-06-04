@@ -1,14 +1,15 @@
-import { LoaderFunction, useLoaderData } from "react-router-dom";
+import {
+  ActionFunction,
+  Form,
+  LoaderFunction,
+  redirect,
+  useLoaderData,
+} from "react-router-dom";
 import { Product } from "@/utils/types";
 import customFetch from "@/utils/customFetch";
-import { Link } from "react-router-dom";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+
+import { Button } from "@/components/ui/button";
+import AmountSelect from "@/components/AmountSelect";
 
 export const loader: LoaderFunction = async ({
   params,
@@ -17,6 +18,26 @@ export const loader: LoaderFunction = async ({
     data: { product },
   } = await customFetch(`/products/${params.id}`);
   return product;
+};
+
+export const action: ActionFunction = async ({ params, request }) => {
+  const {
+    data: { product },
+  } = await customFetch(`/products/${params.id}`);
+  const formData = await request.formData();
+  const amount = Object.fromEntries(formData);
+  const cartItem = {
+    productId: product._id,
+    image: product.image,
+    title: product.title,
+    category: product.category,
+    company: product.company,
+    amount: amount.amount,
+    price: product.price,
+    totalPrice: parseInt(product.price) * parseInt(amount.amount as string),
+  };
+  await customFetch.post("/cart", cartItem);
+  return redirect("/cart");
 };
 const SingleProduct = () => {
   const product = useLoaderData() as Product;
@@ -49,30 +70,18 @@ const SingleProduct = () => {
               ))}
             </ul>
           </div>
-          <div>
-            <h4 className="p-bold-16  ">Amount</h4>
-            <Select defaultValue="1">
-              <SelectTrigger className="w-[180px] mt-4">
-                <SelectValue placeholder={1} />
-              </SelectTrigger>
-              <SelectContent>
-                {Array.from({ length: 10 }).map((_, index) => {
-                  const selectedValue = (index += 1).toString();
-                  return (
-                    <SelectItem value={selectedValue} key={selectedValue}>
-                      {index}
-                    </SelectItem>
-                  );
-                })}
-              </SelectContent>
-            </Select>
-          </div>
-          <Link
-            to="/cart"
-            className="mt-8 py-2 px-6 bg-green-400 block w-fit rounded p-bold-16"
-          >
-            Add To Cart
-          </Link>
+          <Form method="post">
+            <div>
+              <h4 className="p-bold-16  ">Amount</h4>
+              <AmountSelect defaultValue={"1"} />
+            </div>
+            <Button
+              type="submit"
+              className="mt-8 py-2 px-6 bg-green-400 block w-fit rounded p-bold-16"
+            >
+              Add To Cart
+            </Button>
+          </Form>
         </div>
       </div>
     </section>

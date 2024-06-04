@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import barImg from "../assets/img/menu.png";
+import { IoMenu } from "react-icons/io5";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,8 +12,8 @@ const MobileNavbar = () => {
   return (
     <div className="md:hidden">
       <DropdownMenu>
-        <DropdownMenuTrigger>
-          <img src={barImg} className="w-10" />
+        <DropdownMenuTrigger className="flex items-center">
+          <IoMenu size={28} />
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           {links.map((link) => {
