@@ -2,20 +2,30 @@ import bcryptjs from "bcryptjs";
 import { Schema, model } from "mongoose";
 
 const userSchema = new Schema({
-  userName: {
+  first_name: {
     type: String,
-    required: [true, "user name is required"],
+    required: [true, "first name is required"],
     minLength: 3,
   },
-  email: {
+  last_name: {
     type: String,
-    required: [true, "email is required"],
+    required: [true, "last name is required"],
     minLength: 3,
   },
-  password: {
+  image_url: {
     type: String,
-    required: [true, "password is required"],
-    minLength: 6,
+    required: [true, "last name is required"],
+  },
+  email_addresses: {
+    type: String,
+    required: [true, "email_addresses is required"],
+    minLength: 3,
+    unique: true,
+  },
+
+  clerkId: {
+    type: String,
+    required: true,
   },
   role: {
     type: String,
@@ -25,19 +35,9 @@ const userSchema = new Schema({
   },
 });
 
-userSchema.methods.toJSON = function () {
-  const user = this.toObject();
-  delete user.password;
-  return user;
-};
-
 userSchema.methods.comparePasswords = async function (password) {
   const isPasswordCorrect = await bcryptjs.compare(password, this.password);
   return isPasswordCorrect;
 };
-userSchema.pre("save", async function () {
-  const salt = await bcryptjs.genSalt(8);
-  this.password = await bcryptjs.hash(this.password, salt);
-});
 
 export default model("User", userSchema);

@@ -1,7 +1,12 @@
 import { StatusCodes } from "http-status-codes";
+
 import User from "../models/User.js";
 import BADREQUESTERROR from "../errors/badRequestError.js";
 import { attachCookieToRes, createToken } from "../utils/tokenHandler.js";
+import express from "express";
+
+const app = express();
+
 export const createUser = async (req, res) => {
   const isFirstEmail = (await User.countDocuments()) === 0;
 

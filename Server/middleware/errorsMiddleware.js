@@ -16,7 +16,7 @@ const errorMiddleware = (err, req, res, next) => {
     customError.message = "invalid id";
     customError.statusCode = StatusCodes.BAD_REQUEST;
   }
-  // return res.json(err);
+  return res.json(err);
 
   return res
     .status(customError.statusCode)

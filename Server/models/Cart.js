@@ -12,6 +12,7 @@ const CartSchema = new Schema({
   company: String,
   price: String,
   totalPrice: Number,
+  userId: String,
 });
 
 export default model("Cart", CartSchema);

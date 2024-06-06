@@ -1,9 +1,11 @@
-import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
+import { SignedIn, SignedOut, UserButton, useUser } from "@clerk/clerk-react";
 import { FaSignInAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import MobileNavbar from "./MobileNavbar";
 
 const AuthNavbar = () => {
+  const { user } = useUser();
+
   return (
     <div className="flex gap-4 items-center ">
       <MobileNavbar />
@@ -16,7 +18,10 @@ const AuthNavbar = () => {
           </div>
         </SignedOut>
         <SignedIn>
-          <UserButton defaultOpen />
+          <div className="flex gap-4 items-center">
+            <p className="p-regular-18">{user?.fullName}</p>
+            <UserButton defaultOpen />
+          </div>
         </SignedIn>
       </div>
     </div>

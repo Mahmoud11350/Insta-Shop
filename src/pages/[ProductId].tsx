@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { Product } from "@/utils/types";
 import customFetch from "@/utils/customFetch";
+import { auth } from "@clerk/clerk-react";
 
 import { Button } from "@/components/ui/button";
 import AmountSelect from "@/components/AmountSelect";
@@ -21,6 +22,8 @@ export const loader: LoaderFunction = async ({
 };
 
 export const action: ActionFunction = async ({ params, request }) => {
+  const { userId } = await auth();
+  console.log(userId);
   const {
     data: { product },
   } = await customFetch(`/products/${params.id}`);
